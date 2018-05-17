@@ -23,13 +23,26 @@ class BannerSlider extends Component {
         marginleft: '0px',
         time: '0',
         maxTime: '1000',
-        clickable: true
+        clickable: true,
+        autoPlay: true
       };
 
       this.nextSlide = this.nextSlide.bind(this);
       this.previousSlide = this.previousSlide.bind(this);
       this.getSlide = this.getSlide.bind(this);
       this.tempSlide = this.tempSlide.bind(this);
+      this.autoPlay = this.autoPlay.bind(this);
+
+
+      if(this.state.autoPlay) {
+        this.autoPlay();
+      }
+  }
+
+  autoPlay() {
+    setInterval(() => {
+      this.nextSlide()
+    }, 10000);
   }
 
   newSlideCount(slideCount, direction) {
