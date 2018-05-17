@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slide from './slide/Slide';
 import RightArrow from './arrows/RightArrow';
 import LeftArrow from './arrows/LeftArrow';
+import Dot from './dots/Dot';
 
 class BannerSlider extends Component {
   constructor() {
@@ -32,6 +33,7 @@ class BannerSlider extends Component {
       this.getSlide = this.getSlide.bind(this);
       this.tempSlide = this.tempSlide.bind(this);
       this.autoPlay = this.autoPlay.bind(this);
+      this.getDots = this.getDots.bind(this);
 
 
       if(this.state.autoPlay) {
@@ -131,6 +133,13 @@ class BannerSlider extends Component {
     return <Slide imgpath={this.state.images[idx]} zindex='1' marginleft="0px" time="0" />
   }
 
+  getDots() {
+    return(
+      <Dot />
+    );
+
+  }
+
   render() {
     return(
       <div className="banner" style={this.state.bannerStyle}>
@@ -138,6 +147,7 @@ class BannerSlider extends Component {
         {this.getSlide(this.state.slideCount)}
         <div className="banner-controls">
           <LeftArrow previousSlide={this.previousSlide} />
+          { this.getDots() }
           <RightArrow nextSlide={this.nextSlide} />
         </div>
       </div>
