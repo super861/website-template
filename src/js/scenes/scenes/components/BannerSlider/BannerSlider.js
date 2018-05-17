@@ -22,7 +22,7 @@ class BannerSlider extends Component {
         zindex: '1',
         marginleft: '0px',
         time: '0',
-        maxTime: '2000',
+        maxTime: '1000',
         clickable: true
       };
 
@@ -32,25 +32,39 @@ class BannerSlider extends Component {
       this.tempSlide = this.tempSlide.bind(this);
   }
 
-  newSlideCount(slideCount) {
-    if(slideCount + 1 >= this.state.images.length) {
-      return 0;
+  newSlideCount(slideCount, direction) {
+    if(this.state.direction === 'right') {
+      if(slideCount + 1 >= this.state.images.length) {
+        return 0;
+      }
+      else {
+        return slideCount + 1;
+      }
     }
-    else {
-      return slideCount + 1;
+
+    else if(this.state.direction === 'left') {
+      if(slideCount - 1 < 0) {
+        return this.state.images.length - 1;
+      }
+      else {
+        return slideCount - 1;
+      }
     }
+
   }
 
   nextSlide() {
     if(!this.state.clickable) {
       return null;
     }
+
     this.setState({
       fade: true,
       zindex: '2',
       marginleft: '1920px',
       time: this.state.maxTime,
-      clickable: false
+      clickable: false,
+      direction: 'right'
     })
 
     setTimeout(() => {
@@ -68,16 +82,31 @@ class BannerSlider extends Component {
   }
 
   previousSlide() {
-    // if(this.state.slideCount - 1 < 0) {
-    //   this.setState({
-    //     slideCount: this.state.slideTotal
-    //   })
-    // }
-    // else {
-    //   this.setState({
-    //     slideCount: this.state.slideCount - 1
-    //   })
-    // }
+    if(!this.state.clickable) {
+      return null;
+    }
+
+    this.setState({
+      fade: true,
+      zindex: '2',
+      marginleft: '-1920px',
+      time: this.state.maxTime,
+      clickable: false,
+      direction: 'left'
+    })
+
+    setTimeout(() => {
+      let newSlideCount = this.newSlideCount(this.state.slideCount);
+      this.setState({
+        fade: false,
+        zindex: '1',
+        marginleft: '0px',
+        time: '0',
+        slideCount: newSlideCount,
+        clickable: true
+      })
+    }, this.state.maxTime)
+
   }
 
   getSlide(idx) {

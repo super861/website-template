@@ -8,7 +8,7 @@ const Slide = (props) => {
     backgroundPosition: 'center',
     zIndex: `${props.zindex}`,
     marginLeft: `${props.marginleft}`,
-    transition: `all ${props.time}ms ease`
+    transition: `all ${props.time}ms ease-in-out`
   }
 
   return <div className="slide" id={props.slideId} style={background}></div>
