@@ -25,7 +25,8 @@ class BannerSlider extends Component {
         time: '0',
         maxTime: '1000',
         clickable: true,
-        autoPlay: true
+        autoPlay: true,
+        dotSlide: '0'
       };
 
       this.nextSlide = this.nextSlide.bind(this);
@@ -34,6 +35,7 @@ class BannerSlider extends Component {
       this.tempSlide = this.tempSlide.bind(this);
       this.autoPlay = this.autoPlay.bind(this);
       this.getDots = this.getDots.bind(this);
+      this.goToSlide = this.goToSlide.bind(this);
 
 
       if(this.state.autoPlay) {
@@ -47,7 +49,7 @@ class BannerSlider extends Component {
     }, 10000);
   }
 
-  newSlideCount(slideCount, direction) {
+  newSlideCount(slideCount) {
     if(this.state.direction === 'right') {
       if(slideCount + 1 >= this.state.images.length) {
         return 0;
@@ -56,7 +58,6 @@ class BannerSlider extends Component {
         return slideCount + 1;
       }
     }
-
     else if(this.state.direction === 'left') {
       if(slideCount - 1 < 0) {
         return this.state.images.length - 1;
@@ -64,6 +65,9 @@ class BannerSlider extends Component {
       else {
         return slideCount - 1;
       }
+    }
+    else if(this.state.direction === 'dot') {
+      return this.state.dotSlide;
     }
 
   }
@@ -124,6 +128,34 @@ class BannerSlider extends Component {
 
   }
 
+  goToSlide(e) {
+    if(!this.state.clickable) {
+      return null;
+    }
+
+    let newSlide = Number(e.target.id);
+    this.setState({
+      fade: true,
+      zindex: '2',
+      marginleft: '1920px',
+      time: this.state.maxTime,
+      clickable: false,
+      direction: 'dot',
+      dotSlide: newSlide
+    })
+
+    setTimeout(() => {
+      this.setState({
+        fade: false,
+        zindex: '1',
+        marginleft: '0px',
+        time: '0',
+        slideCount: newSlide,
+        clickable: true
+      })
+    }, this.state.maxTime)
+  }
+
   getSlide(idx) {
     return <Slide imgpath={this.state.images[idx]} zindex={this.state.zindex} marginleft={this.state.marginleft} time={this.state.time} />
   }
@@ -134,10 +166,16 @@ class BannerSlider extends Component {
   }
 
   getDots() {
-    return(
-      <Dot />
+    const listItems = this.state.images.map((img, index) =>
+      <li className="mr-2 mr-1" key={'dot' + index}>
+        {index === this.state.slideCount ? <Dot active={true} slide={index} goToSlide={this.goToSlide} /> : <Dot active={false} slide={index} goToSlide={this.goToSlide} /> }
+      </li>
     );
-
+    return(
+      <ul className="dots">
+        {listItems}
+      </ul>
+    );
   }
 
   render() {

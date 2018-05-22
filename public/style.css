@@ -2,9 +2,13 @@
 .banner { position: relative; overflow: hidden; }
 .banner .slide { height: 100%; width: 100%; position: absolute; z-index: 1; }
 .banner .banner-controls { display: flex; z-index: 3; position: absolute; width: 100%; height: 100%; justify-content: space-between; align-items: center; }
-.banner .banner-controls > div { margin: 15px; }
+.banner .banner-controls > div { margin: 15px; color: rgba(0, 0, 0, 0.4) }
 .banner .banner-controls > div:hover { cursor: pointer; }
-.banner .banner-controls .dot { align-self: flex-end; }
+.banner .banner-controls .dots { align-self: flex-end; display: flex; }
+.banner .banner-controls ul.dots { list-style-type: none; }
+.banner .banner-controls .dots .dot i { color: rgba(0, 0, 0, 0.4); }
+.banner .banner-controls .dots .dot i:hover { color: rgba(0, 0, 0, 0.8); cursor: pointer; }
+.banner .banner-controls .dots .dot i.active { color: rgba(0, 0, 0, 0.8); }
 
 
 /*+++++FOOTER+++++*/
