@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Slide from './slide/Slide';
 import RightArrow from './arrows/RightArrow';
 import LeftArrow from './arrows/LeftArrow';
 import Dot from './dots/Dot';
 
-class BannerSlider extends Component {
-  constructor() {
-      super();
+const mapStateToProps = state => {
+  return {
+    images: state.bannerImages
+  }
+}
+
+class ConnectedBannerSlider extends Component {
+  constructor(props) {
+      super(props);
 
       this.state = {
         slideCount: 0,
@@ -15,11 +22,7 @@ class BannerSlider extends Component {
           height: "640px"
         },
         fade: false,
-        images: [
-          "images/banner/firstslide.png",
-          "images/banner/secondslide.png",
-          "images/banner/thirdslide.png"
-        ],
+        images: [...this.props.images],
         zindex: '1',
         marginleft: '0px',
         time: '0',
@@ -193,5 +196,7 @@ class BannerSlider extends Component {
     );
   }
 }
+
+const BannerSlider = connect(mapStateToProps)(ConnectedBannerSlider);
 
 export default BannerSlider;
