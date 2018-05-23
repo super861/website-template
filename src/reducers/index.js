@@ -3,7 +3,10 @@ const initialState = {
     "images/banner/firstslide.png",
     "images/banner/secondslide.png",
     "images/banner/thirdslide.png"
-  ]
+  ],
+  account: {
+    loggedIn: false
+  }
 };
 
 const rootReducer = (state = initialState, action) => {

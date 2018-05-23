@@ -2,8 +2,15 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const  Header = () => (
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.account.loggedIn
+  };
+};
+
+const ConnectedHeader = (props) => (
   <header>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -21,7 +28,7 @@ const  Header = () => (
               <Link className="nav-link" to="/">Contact</Link>
             </li>
             <li className="nav-item mr-3">
-              <Link className="nav-link" to="/">Admin</Link>
+              <Link className="nav-link" to="/admin">Admin</Link>
             </li>
           </ul>
         </div>
@@ -29,5 +36,7 @@ const  Header = () => (
     </nav>
   </header>
 );
+
+const Header = connect(mapStateToProps)(ConnectedHeader);
 
 export default Header;
