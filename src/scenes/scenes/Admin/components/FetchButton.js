@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => {
 
 class ConnectedFetchButton extends Component {
 
-  onSubmitHandler(e) {
+  onClickHandler(e) {
     e.preventDefault();
     // this.props.loadData().then(() => {
     // });
@@ -19,9 +19,7 @@ class ConnectedFetchButton extends Component {
 
   render() {
     return(
-      <form className="form-group" onSubmit={this.onSubmitHandler.bind(this)}>
-        <button type="submit" className="btn btn-primary">Fetch data</button>
-      </form>
+      <button type="submit" className="btn btn-primary" onClick={this.onClickHandler.bind(this)}>{this.props.name}</button>
     )
   }
 }
