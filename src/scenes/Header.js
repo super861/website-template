@@ -4,13 +4,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.account.loggedIn
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     loggedIn: state.account.loggedIn
+//   };
+// };
 
-const ConnectedHeader = (props) => (
+const Header = (props) => (
   <header>
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -37,6 +37,6 @@ const ConnectedHeader = (props) => (
   </header>
 );
 
-const Header = connect(mapStateToProps)(ConnectedHeader);
+//const Header = connect(mapStateToProps)(ConnectedHeader);
 
 export default Header;

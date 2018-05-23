@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import FetchButton from './components/FetchButton';
+import { connect } from 'react-redux';
 
-class Admin extends Component {
+const mapStateToProps = state => {
+  return {
+    accountInfo: state.account
+  }
+}
+
+class ConnectedAdmin extends Component {
   constructor() {
     super();
-
-    this.state = {
-      buttonClicked: false
-    }
-
-    this.fetchData = this.fetchData.bind(this);
-  }
-
-  fetchData() {
-    this.setState({
-      buttonClicked: true
-    })
+    
   }
 
   render() {
@@ -26,8 +22,8 @@ class Admin extends Component {
             <h1> Admin </h1>
           </div>
           <div className="row content_row_1 mt-3 d-flex flex-column align-content-center">
-            <FetchButton click={this.fetchData} />
-            {this.state.buttonClicked ? <p>clicked</p> : <p>not clicked</p>}
+            <FetchButton />
+            {this.props.accountInfo ? <p>{this.props.accountInfo.user.username}</p> : null}
           </div>
         </div>
       </div>
@@ -35,5 +31,7 @@ class Admin extends Component {
     );
   }
 };
+
+const Admin = connect(mapStateToProps)(ConnectedAdmin);
 
 export default Admin;

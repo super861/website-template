@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loadData } from '../../../../actions/index';
 
-class FetchButton extends Component {
+const mapDispatchToProps = dispatch => {
+  return {
+    loadData: () => dispatch(loadData())
+  }
+}
+
+class ConnectedFetchButton extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-
-    fetch('http://192.168.1.203/regg/index.php/api/projectsApi/view/1/regg/index.php/api/projectsApi/view/1')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data.title)
-    })
-
-    console.log('test');
+    // this.props.loadData().then(() => {
+    // });
+    this.props.loadData();
   }
 
   render() {
@@ -22,5 +25,7 @@ class FetchButton extends Component {
     )
   }
 }
+
+const FetchButton = connect(null, mapDispatchToProps)(ConnectedFetchButton);
 
 export default FetchButton;
