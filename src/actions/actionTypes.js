@@ -1,3 +1,2 @@
 export const LOAD_DATA_SUCCES = 'LOAD_DATA_SUCCES';
-export const LOGIN_SUCCES = 'LOGIN_SUCCES';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGIN_UPDATE = 'LOGIN_UPDATE';

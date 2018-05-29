@@ -18,7 +18,7 @@ export const login = (_data) => {
 
     return DataApi.login(_data).then(data => {
       if(data.message === "succes") {
-        dispatch(loginSucces());
+        dispatch(loginSucces(data));
       }
       else {
         dispatch(loginFailure())
@@ -29,20 +29,40 @@ export const login = (_data) => {
   };
 }
 
-const loginSucces = () => {
+export const register = (_data) => {
+  return function(dispatch) {
+    return DataApi.register(_data).then(data => {
+      if(data.message === "success") {
+        dispatch(login(_data));
+      }
+      else {
+        console.log(data)
+      }
+    }).catch(error => {
+      console.log(error)
+    });
+  };
+}
+
+const loginSucces = (_data) => {
   return  {
-    type: types.LOGIN_SUCCES,
-    status: {
-      logged: true
+    type: types.LOGIN_UPDATE,
+    data: {
+      status: 'LOGIN_SUCCESFULL',
+      error: '',
+      account: {
+        username: _data.username
+      }
     }
   }
 }
 
 const loginFailure = () => {
   return {
-    type: types.LOGIN_FAILURE,
-    status: {
-      logged: false
+    type: types.LOGIN_UPDATE,
+    data: {
+      status: 'LOGIN_UNSUCCESFULL',
+      error: 'username and/or password are incorrect.'
     }
   }
 }

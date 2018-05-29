@@ -6,7 +6,8 @@ import { login } from '../../../actions/index';
 
 const mapStateToProps = state => {
   return {
-    logged: state.logged
+    status: state.status,
+    error: state.error
   }
 }
 
@@ -54,7 +55,7 @@ class ConnectedLogin extends Component {
   render() {
     return(
       <div id="page_login" className="container" onSubmit={this.onSubmitHandler.bind(this)}>
-        { this.props.logged && <Redirect to='/account' /> }
+        { this.props.status === "LOGIN_SUCCESFULL" && <Redirect to='/account' /> }
         <div className="row col-md-6 offset-md-3">
           <form className="form-group mt-5 border p-3" >
             <div className="row">
@@ -83,9 +84,14 @@ class ConnectedLogin extends Component {
                 <button type="submit" className="btn btn-primary">Login</button>
               </div>
             </div>
-            <div className="row">
+            <div className="row mb-3">
               <div className="row col-md-9 offset-md-3">
                 <FetchButton name="Fake login" />
+              </div>
+            </div>
+            <div className="row">
+              <div className="row col-md-9 offset-md-3">
+                { this.props.status === "LOGIN_UNSUCCESFULL" && <p className="text-danger"> {this.props.error} </p>}
               </div>
             </div>
           </form>

@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { register } from '../../../actions/index';
 
 const mapStateToProps = state => {
   return {
-    accountInfo: state.account
+    status: state.status
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    register: data => dispatch(register(data))
   }
 }
 
@@ -26,28 +33,6 @@ class ConnectedRegister extends Component {
     this.validatePasswordMatch = this.validatePasswordMatch.bind(this);
     this.sendData = this.sendData.bind(this);
   }
-
-  // validateUsername() {
-  //   let name = this.state.username;
-  //   if(name.length === 0) {
-  //     //this.setState({ validateUsername: false })
-  //     return(
-  //       <label className="text-danger"></label>
-  //     );
-  //   }
-  //   else if(name.length < 4) {
-  //     //this.setState({ validateUsername: false })
-  //     return(
-  //       <label className="text-danger">Username has to be between 4 - 12 characters</label>
-  //     );
-  //   }
-  //   else if(name.length >= 4 && name.length <= 12) {
-  //     //this.setState({ validateUsername: true })
-  //     return(
-  //       <label className="text-success">Valid username</label>
-  //     );
-  //   }
-  // }
 
   validateUsername(username) {
     if(username.length < 4) {
@@ -132,28 +117,14 @@ class ConnectedRegister extends Component {
         password: this.state.password
       }
 
-      let dataString = JSON.stringify(data);
+      this.props.register(data)
 
-      fetch('http://192.168.1.203/regg/index.php/api/usersApi/register/', {
-        method: 'POST',
-        body: dataString
-      })
-      .then((response) => {
-        //console.log(response.json())
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data)
-        if(data.message === "success") {
-          console.log('HOI')
-        }
-      });
   }
 
   render() {
     return(
       <div id="page_login" className="container" onSubmit={this.onSubmitHandler.bind(this)}>
-        { this.props.accountInfo && <Redirect to='/account' /> }
+        { this.props.status === "LOGIN_SUCCESFULL" && <Redirect to='/account' /> }
         <div className="row col-md-8 offset-md-2">
           <form className="form-group mt-5 border p-3" >
             <div className="row">
@@ -196,7 +167,7 @@ class ConnectedRegister extends Component {
             </div>
             <div className="row mb-3">
               <div className="row col-md-9 offset-md-3">
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary">Register</button>
               </div>
             </div>
           </form>
@@ -206,6 +177,6 @@ class ConnectedRegister extends Component {
   }
 }
 
-const Register = connect(mapStateToProps)(ConnectedRegister);
+const Register = connect(mapStateToProps, mapDispatchToProps)(ConnectedRegister);
 
 export default Register;

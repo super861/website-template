@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { connect } from 'react-redux';
 
-class AccountDropdown extends Component {
+const mapStateToProps = state => {
+  return {
+    status: state.status,
+    account: state.account
+  }
+}
+
+class ConnectedAccountDropdown extends Component {
   constructor(props) {
     super(props)
 
@@ -20,7 +28,24 @@ class AccountDropdown extends Component {
   }
 
   render() {
-    if(!this.props.accountInfo) {
+    if(this.props.status === "LOGIN_SUCCESFULL") {
+      return(
+        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle nav caret>
+            {this.props.account.username}
+          </DropdownToggle>
+          <DropdownMenu>
+            <div className="nav-item" onClick={this.toggle}>
+              <Link className="nav-link" to="/account">Profile</Link>
+            </div>
+            <div className="nav-item" onClick={this.toggle}>
+              <Link className="nav-link" to="/">Nog iets</Link>
+            </div>
+          </DropdownMenu>
+        </Dropdown>
+      );
+    }
+    else {
       return(
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <DropdownToggle nav caret>
@@ -37,10 +62,9 @@ class AccountDropdown extends Component {
         </Dropdown>
       );
     }
-    else {
-
-    }
   }
 }
+
+const AccountDropdown = connect(mapStateToProps)(ConnectedAccountDropdown);
 
 export default AccountDropdown;

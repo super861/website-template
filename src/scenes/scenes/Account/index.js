@@ -4,26 +4,24 @@ import { Redirect } from 'react-router-dom';
 
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    accountInfo: state.account
+    status: state.status,
+    account: state.account
   }
 }
 
 class ConnectedAccount extends Component {
-  constructor(props) {
-    super(props);
 
-    //console.log(props);
-  }
   render() {
-    if(!this.props.accountInfo) {
+    if(this.props.status !== "LOGIN_SUCCESFULL") {
       return(
         <Redirect to='/account/login' />
       );
-    } else {
+    } else if(this.props.status === "LOGIN_SUCCESFULL") {
       return(
         <div className="container">
-          <h1>hi</h1>
+          <h1>{this.props.account.username}</h1>
         </div>
 
       );
