@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import FetchButton from '../Admin/components/FetchButton';
+import { login } from '../../../actions/index';
 
 const mapStateToProps = state => {
   return {
-    accountInfo: state.account
+    logged: state.logged
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: data => dispatch(login(data))
   }
 }
 
@@ -14,8 +21,8 @@ class ConnectedLogin extends Component {
     super();
 
     this.state = {
-      username: '',
-      password: ''
+      username: "",
+      password: ""
     };
   }
 
@@ -32,21 +39,27 @@ class ConnectedLogin extends Component {
   }
 
   onSubmitHandler(e) {
-    let pass = this.state.password;
-    console.log(pass)
     e.preventDefault();
+
+    const data = {
+      username: this.state.username,
+      password: this.state.password
+    }
+
+    this.props.login(data);
+    //DataApi.login(data);
 
   }
 
   render() {
     return(
       <div id="page_login" className="container" onSubmit={this.onSubmitHandler.bind(this)}>
-        { this.props.accountInfo && <Redirect to='/account' /> }
+        { this.props.logged && <Redirect to='/account' /> }
         <div className="row col-md-6 offset-md-3">
-          <form className="form-group mt-5 border p-3">
+          <form className="form-group mt-5 border p-3" >
             <div className="row">
               <div className="col-md-9 offset-md-3 mb-3">
-                <h2>Please Login</h2>
+                <h2>Login</h2>
               </div>
             </div>
             <div className="row mb-3">
@@ -54,7 +67,7 @@ class ConnectedLogin extends Component {
                 <label htmlFor="inputUsername">Username:</label>
               </div>
               <div className="col-md-9">
-                <input type="text" className="form-control" id="inputUsername" placeholder="User" onChange={this.loginOnChangeHandler.bind(this)} value={this.state.username} />
+                <input name="inputUsername" type="text" className="form-control" id="inputUsername" placeholder="User" onChange={this.loginOnChangeHandler.bind(this)} value={this.state.username} />
               </div>
             </div>
             <div className="row mb-3">
@@ -82,6 +95,6 @@ class ConnectedLogin extends Component {
   }
 }
 
-const Login = connect(mapStateToProps)(ConnectedLogin);
+const Login = connect(mapStateToProps, mapDispatchToProps)(ConnectedLogin);
 
 export default Login;

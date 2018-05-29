@@ -5,7 +5,8 @@ const initialState = {
     "images/banner/firstslide.png",
     "images/banner/secondslide.png",
     "images/banner/thirdslide.png"
-  ]
+  ],
+  logged: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -18,6 +19,12 @@ const rootReducer = (state = initialState, action) => {
           ...action.data
         }
       };
+    case types.LOGIN_SUCCES:
+    console.log('succes')
+      return {
+        ...state,
+        ...action.status
+      }
     default:
       return state;
   }

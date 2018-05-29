@@ -10,11 +10,7 @@ const mapStateToProps = state => {
 }
 
 class ConnectedAdmin extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
+render() {
     return(
       <div id="page_home">
         { !this.props.accountInfo && <Redirect to='/account/login' />}

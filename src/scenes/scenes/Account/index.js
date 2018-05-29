@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+
 const mapStateToProps = state => {
   return {
     accountInfo: state.account
@@ -9,6 +10,11 @@ const mapStateToProps = state => {
 }
 
 class ConnectedAccount extends Component {
+  constructor(props) {
+    super(props);
+
+    //console.log(props);
+  }
   render() {
     if(!this.props.accountInfo) {
       return(
@@ -17,11 +23,13 @@ class ConnectedAccount extends Component {
     } else {
       return(
         <div className="container">
-          <h1>{this.props.accountInfo.user.username}</h1>
+          <h1>hi</h1>
         </div>
 
       );
     }
+
+    //<h1>{this.props.accountInfo.user.username}</h1>
 
     // return(
     //   <div>

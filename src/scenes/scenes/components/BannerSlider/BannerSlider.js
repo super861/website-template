@@ -36,20 +36,28 @@ class ConnectedBannerSlider extends Component {
       this.previousSlide = this.previousSlide.bind(this);
       this.getSlide = this.getSlide.bind(this);
       this.tempSlide = this.tempSlide.bind(this);
-      this.autoPlay = this.autoPlay.bind(this);
       this.getDots = this.getDots.bind(this);
       this.goToSlide = this.goToSlide.bind(this);
 
 
-      if(this.state.autoPlay) {
-        this.autoPlay();
-      }
+      // if(this.state.autoPlay) {
+      //   this.autoPlay();
+      // }
   }
 
-  autoPlay() {
-    setInterval(() => {
-      this.nextSlide()
-    }, 10000);
+  componentDidMount() {
+    if(this.state.autoPlay){
+      this.interval = setInterval(() => {
+        this.nextSlide()
+      }, 5000)
+    }
+  }
+
+  componentWillUnmount() {
+    if(this.interval)
+      clearInterval(this.interval)
+    if(this.timeOut)
+      clearTimeout(this.timeOut)  
   }
 
   newSlideCount(slideCount) {
@@ -89,7 +97,7 @@ class ConnectedBannerSlider extends Component {
       direction: 'right'
     })
 
-    setTimeout(() => {
+    this.timeOut = setTimeout(() => {
       let newSlideCount = this.newSlideCount(this.state.slideCount);
       this.setState({
         fade: false,
@@ -117,7 +125,7 @@ class ConnectedBannerSlider extends Component {
       direction: 'left'
     })
 
-    setTimeout(() => {
+    this.timeOut = setTimeout(() => {
       let newSlideCount = this.newSlideCount(this.state.slideCount);
       this.setState({
         fade: false,
@@ -147,7 +155,7 @@ class ConnectedBannerSlider extends Component {
       dotSlide: newSlide
     })
 
-    setTimeout(() => {
+    this.timeOut = setTimeout(() => {
       this.setState({
         fade: false,
         zindex: '1',

@@ -6,6 +6,7 @@ import Home  from './scenes/Home/index';
 import Admin from './scenes/Admin/index';
 import Login from './scenes/Account/Login';
 import Account from './scenes/Account/index';
+import Register from './scenes/Account/Register';
 
 const Main = () => (
   <main>
@@ -14,6 +15,7 @@ const Main = () => (
       <Route path='/admin' component={Admin} />
       <Route exact path='/account' component={Account} />
       <Route path='/account/login' component={Login} />
+      <Route path='/account/register' component={Register} />
     </Switch>
   </main>
 );

@@ -1,3 +1,18 @@
+/*+++++NAV+++++*/
+nav .navbar-nav {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+nav .navbar-nav li:last-child {
+  margin-left: auto;
+}
+
+nav .dropdown .dropdown-menu {
+	background-color: #f8f9fa;
+	border: none;
+}
+
 /*+++++BANNER SLIDER +++++*/
 .banner { position: relative; overflow: hidden; }
 .banner .slide { height: 100%; width: 100%; position: absolute; z-index: 1; }
