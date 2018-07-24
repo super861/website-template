@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8 Functies</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Functies</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Functie-declaratie</h2>
+            <textarea class="script">
+zegHallo();
+
+function zegHallo() {
+    console.log('Hallo!');
+}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Parameters</h2>
+            <textarea class="script">
+function zegIets(tekst) {
+    console.log(tekst);
+}
+
+zegIets('Hallo iedereen!');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Resultaten teruggeven</h2>
+            <textarea class="script">
+function optellen(getal1, getal2) {
+    return getal1 + getal2;
+}
+
+console.log(optellen(5, 10));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Functie-expressie</h2>
+            <textarea class="script">
+zegHallo();
+
+var zegHallo = function() {
+    console.log('Hallo!');
+}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Arrow-notatie</h2>
+            <textarea class="script">
+var zegHallo = () => {
+    alert('Hallo!');
+}
+
+console.log(zegHallo());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Annonieme functies</h2>
+            <textarea class="script">
+setTimeout(() => {
+    alert("Eén seconde is voorbij gegaan!");
+}, 1000);
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

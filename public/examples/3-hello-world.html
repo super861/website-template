@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3 Hello World</title>
+    <script src="./js/common.js"></script>
+    <!--<link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>-->
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Hello World</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <!--<div class="panel panel-output" id="output"></div>-->
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <!-- Inline -->
+        <div class="script-panel">
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;3 Hello World&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+<span class="highlight wide">        &lt;script&gt;</span>
+<span class="highlight wide">            console.log('Hello world!');</span>
+<span class="highlight wide">        &lt;/script&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <textarea class="script hidden">
+console.log('Hello world!');
+</textarea>
+        </div>
+        <!-- Header -->
+        <div class="script-panel">
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;3 Hello World&lt;/title&gt;
+<span class="highlight wide">        &lt;script src="3-hello-world.js"&gt;&lt;/script&gt;</span>
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <textarea class="script hidden">
+console.log('Hello world!');
+</textarea>
+        </div>
+        <!-- Body -->
+        <div class="script-panel">
+            <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;3 Hello World&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+<span class="highlight wide">        &lt;script src="3-hello-world.js"&gt;&lt;/script&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <textarea class="script hidden">
+console.log('Hello world!');
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

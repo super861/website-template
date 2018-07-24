@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12 DOM</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="./css/github-gist.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>DOM</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output stretch" id="output">
+                    <div class="panel-html clear"></div>
+                    <div>
+                        <hr/>
+                    </div>
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="refresh">Ververs</button>
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Event listeners toevoegen</h2>
+            <pre><code class="dom html">
+<h3>Koptekst</h3>
+<p>Paragraaf 1</p>
+<p>Paragraaf 2</p>
+</code></pre>
+            <hr/>
+            <textarea class="script">
+var mijnHeading = document.querySelector('h3');
+var paragrafen = document.querySelectorAll('p');
+for(index = 0; index < paragrafen.length; index++) {
+ paragrafen[index].addEventListener('click', function() {
+	mijnHeading.style.color = 'red';
+    });
+};
+
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Event listeners verwijderen</h2>
+            <pre><code class="dom html">
+<h3>Koptekst</h3>
+<p>Paragraaf 1</p>
+<p>Paragraaf 2</p>
+</code></pre>
+            <hr/>
+            <textarea class="script">
+var mijnHeading = document.querySelector('h3');
+var paragrafen = document.querySelectorAll('p');
+var maakHeadingBlauw = () => {
+    mijnHeading.style.color = 'blue';
+}
+
+for(index = 0; index < paragrafen.length; index++) {
+    paragrafen[index].addEventListener('click', maakHeadingBlauw);
+    paragrafen[index].removeEventListener('click', maakHeadingBlauw);
+};
+
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Laten wij nu de keyboard gebruiken!</h2>
+            <p><kbd>ESC</kbd>: Weer de normale besturing</p>
+            <textarea class="script">
+const keyboardBesturing = (event) => {
+    console.log(event.key);
+    if(event.key === 'Escape') {
+        window.removeEventListener('keypress', keyboardBesturing);
+    }
+}
+window.addEventListener('keypress', keyboardBesturing);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>event.target</h2>
+            <pre><code class="dom html">
+<p>Een paragraaf</p>
+<p>Nog een paragraaf</p>
+<p>Alweer een paragraaf</p>
+</code></pre>
+            <textarea class="script">
+var paragrafen = document.querySelectorAll('p');
+var kijkParagraaf = (event) => {
+    console.log(event.target.textContent);
+}
+for(index = 0; index < paragrafen.length; index++) {
+    paragrafen[index].addEventListener('click', kijkParagraaf);
+};
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Standaard actie uitschakelen</h2>
+            <pre><code class="dom html">
+<a href="https://www.premiums.mobi" id="link">Een link</a>
+</code></pre>
+            <textarea class="script">
+const link = document.getElementById('link');
+link.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log(link.href);
+});
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

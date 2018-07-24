@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7 Loops</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Loops</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>while-loop</h2>
+            <textarea class="script">
+var getal = 0;
+while(getal != 5) {
+    getal = prompt('Wat is het getal?');
+}
+alert('dat was het goede getal!');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>do-while-loop</h2>
+            <textarea class="script">
+var getal = 0;
+do {
+    getal = prompt('Wat is het getal?');
+} while(getal != 5);
+alert('dat was het goede getal!');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>for-loop</h2>
+            <textarea class="script">
+for(var index = 0; index < 3; index++) {
+    console.log(index);
+}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>switch-case</h2>
+            <textarea class="script">
+var index;
+for(index = 0; index < 3; index++) {
+    console.log(index);
+}
+console.log('Uitkomst: ' + index);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>continue</h2>
+            <textarea class="script">
+for(var index = 0; index < 10; index++) {
+    if(index % 2 === 0) {
+        continue;
+    }
+    console.log(index);
+}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>break</h2>
+            <textarea class="script">
+for(var index = 0; index < 10; index++) {
+    if(!confirm('Huidige getal: ' + index)) {
+        break;
+    }
+    console.log(index);
+}
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

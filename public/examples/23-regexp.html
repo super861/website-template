@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>23 Reguliere Expressies</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="./css/github-gist.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Reguliere Expressies</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output stretch" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="refresh">Ververs</button>
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Regular expressions</h2>
+            <textarea class="script">
+const pattern1 = /ab+c/;
+const pattern2 = new RegExp('ab+c');
+const pattern3 = /ab+c/i;
+const pattern4 = new RegExp('ab+c', 'i');
+
+console.log('Patroon 1:', pattern1);
+console.log('Patroon 2:', pattern2);
+console.log('Patroon 3:', pattern3);
+console.log('Patroon 4:', pattern4);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>test</h2>
+            <textarea class="script">
+const pattern = /een/;
+const str1 = 'Dit is een string';
+const str2 = 'Dit is nog zo\'n string';
+
+console.log('str1:', pattern.test(str1));
+console.log('str2:', pattern.test(str2));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>exec</h2>
+            <textarea class="script">
+const pattern = /een/g;
+const str = 'Dit is een string dat dient als een voorbeeld';
+let match;
+
+while((match = pattern.exec(str)) !== null) {
+    console.log(match, pattern.lastIndex);
+}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>match</h2>
+            <textarea class="script">
+const pattern = /een/;
+const str = 'Dit is een string dat dient als een voorbeeld';
+
+console.log('Match:', str.match(pattern));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>replace</h2>
+            <textarea class="script">
+const pattern = /een/g;
+const str = 'Dit is een string dat dient als een voorbeeld';
+
+console.log('Nieuwe string:', str.replace(pattern, 1));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Speciale tekens en groepen</h2>
+            <textarea class="script">
+const str = 'Reguliere expressies zijn handig om bepaalde substrings ' +
+            'te vinden. Het maakt het zoeken sneller, niet alleen voor ' +
+            'de programmeur, maar ook voor de computer.';
+
+// Speciale tekens
+//console.log(/^.+?\s/, ':', str.match(/^.+?\s/));
+//console.log(/\s\w+?\.?$/, ':', str.match(/\s\w+?\.?$/));
+
+// Karakter-sets
+//console.log(/[aeiou]{2,}/, ':', str.match(/[aeiou]{2,}/));
+
+// Groepen
+//console.log(/[aeiou]{2,}(.+?)[aeiou]{2,}/,
+//            ':',
+//            str.match(/[aeiou]{2,}(.+?)[aeiou]{2,}/));
+
+//console.log(/\w+(ii|aa)\w+/, ':', str.match(/\w+(ii|aa)\w+/));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Greedy vs Lazy</h2>
+            <textarea class="script">
+const str = 'Reguliere expressies zijn handig om bepaalde substrings ' +
+            'te vinden. Het maakt het zoeken sneller, niet alleen voor ' +
+            'de programmeur, maar ook voor de computer.';
+
+console.log('Greedy:', str.match(/\s.+h/));
+
+console.log('Lazy:', str.match(/\s.+?h/));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Speciale groepen</h2>
+            <textarea class="script">
+const str = 'Reguliere expressies zijn handig om bepaalde substrings ' +
+            'te vinden. Het maakt het zoeken sneller, niet alleen voor ' +
+            'de programmeur, maar ook voor de computer.';
+
+// Non-capturing parentheses
+//console.log(/\s.+?(?:handig)/, ':', str.match(/\s(.+?)\s(?:handig)/));
+
+// Lookahead
+//console.log(/.+?(?=\szijn)/, ':', str.match(/.+?(?=\szijn)/));
+
+// Negated lookahead
+//console.log(/\s\w{2}\s(?!b)/, ':', str.match(/\s\w{2}\s(?!b)/));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Vlaggen</h2>
+            <textarea class="script">
+const str = 'Dit is een RegExp voorbeeld.';
+
+console.log(/regexp/.test(str));
+console.log(/regexp/i.test(str));
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18 Promises</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="./css/github-gist.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Classes</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output stretch" id="output">
+                    <div class="panel-html clear"></div>
+                    <div>
+                        <hr/>
+                    </div>
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="refresh">Ververs</button>
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Synchroon</h2>
+            <textarea class="script">
+for(let index = 0; index < 10; index++) {
+    console.log(index);
+}
+console.log('Dit is synchroon');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Asynchroon</h2>
+            <textarea class="script">
+setTimeout(() => {
+    for(let index = 0; index < 10; index++) {
+        console.log(index);
+    }
+}, 1000);
+console.log('Dit is asynchroon');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Voorbeeld promise</h2>
+            <textarea class="script">
+let promise = new Promise(function(resolve, reject) {
+    if(confirm('Promise voltooien?')) {
+        resolve();
+    } else {
+        reject();
+    }
+});
+
+promise.then(() => {
+    console.log('Promise voltooid!');
+}, () => {
+    console.log('Promise gefaald!');
+});
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Promise met events</h2>
+            <pre><code class="dom html">
+<span id="waarde">0</span>
+<button id="knop">Waarde verhogen</button>
+</code></pre>
+            <textarea class="script">
+let promise = new Promise(function(resolve) {
+    const knop = document.getElementById('knop');
+    const waarde = document.getElementById('waarde');
+    let waardeGetal = 0;
+    const klikKnop = () => {
+        waarde.textContent = ++waardeGetal;
+        if(waardeGetal > 9) {
+            knop.removeEventListener('click', klikKnop);
+            knop.disabled = true;
+            resolve();
+        }
+    }
+    knop.addEventListener('click', klikKnop);
+});
+
+promise.then(() => {
+    console.log('Klaar!');
+});
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Promise.all</h2>
+            <div class="hidden">
+            <pre><code class="dom html">
+<p><span id="waarde">0</span> <button id="knop">Waarde verhogen</button></p>
+<p><span id="tijd">--</span></p>
+</code></pre></div>
+            <textarea class="script">
+let promise1 = new Promise(function(resolve) {
+    const knop = document.getElementById('knop');
+    const waarde = document.getElementById('waarde');
+    let waardeGetal = 0;
+    const klikKnop = () => {
+        waarde.textContent = ++waardeGetal;
+        if(waardeGetal > 9) {
+            knop.removeEventListener('click', klikKnop);
+            knop.disabled = true;
+            resolve('Tien keer geklikt');
+        }
+    }
+    knop.addEventListener('click', klikKnop);
+});
+
+let promise2 = new Promise(function(resolve) {
+    const start = (new Date()).getTime();
+    const tijd = document.getElementById('tijd');
+    const countdown = setInterval(() => {
+        const diff = (new Date()).getTime() - start;
+        tijd.textContent = Math.max(0, (1000 - Math.round(diff / 10)) / 100);
+        if(diff >= 10000) {
+            clearInterval(countdown);
+            resolve('Tijd voorbij');
+        }
+    }, 10);
+});
+
+Promise.all([promise1, promise2]).then((values) => {
+    console.log('Klaar!', values);
+});
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Promise.race</h2>
+            <div class="hidden">
+            <pre><code class="dom html">
+<p><span id="waarde">0</span> <button id="knop">Waarde verhogen</button></p>
+<p><span id="tijd">--</span></p>
+</code></pre></div>
+            <textarea class="script">
+let promise1 = new Promise(function(resolve) {
+    const knop = document.getElementById('knop');
+    const waarde = document.getElementById('waarde');
+    let waardeGetal = 0;
+    const klikKnop = () => {
+        waarde.textContent = ++waardeGetal;
+        if(waardeGetal > 9) {
+            knop.removeEventListener('click', klikKnop);
+            knop.disabled = true;
+            resolve('Tien keer geklikt');
+        }
+    }
+    knop.addEventListener('click', klikKnop);
+});
+
+let promise2 = new Promise(function(resolve) {
+    const start = (new Date()).getTime();
+    const tijd = document.getElementById('tijd');
+    const countdown = setInterval(() => {
+        const diff = (new Date()).getTime() - start;
+        tijd.textContent = Math.max(0, (1000 - Math.round(diff / 10)) / 100);
+        if(diff >= 10000) {
+            clearInterval(countdown);
+            resolve('Tijd voorbij');
+        }
+    }, 10);
+});
+
+Promise.race([promise1, promise2]).then((value) => {
+    console.log('Klaar!', value);
+});
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

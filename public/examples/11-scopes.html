@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11 Scopes</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Scopes</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Scope</h2>
+            <textarea class="script">
+function eenFunctie() {
+    var eenVariabel = 4;
+    console.log(eenVariabel);
+}
+
+eenFunctie();
+console.log(eenVariabel);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Global scope</h2>
+            <textarea class="script">
+var eenVariabel = 2;
+
+function eenFunctie() {
+    console.log(eenVariabel);
+    eenVariabel = 3;
+}
+
+eenFunctie();
+console.log(eenVariabel);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Hoisting</h2>
+            <textarea class="script">
+console.log(eenVariabel);
+var eenVariabel = 2;
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Scope closure</h2>
+            <textarea class="script">
+function evenWachten(bericht) {
+    setTimeout(function nogEvenWachten() {
+        console.log( bericht );
+    }, 1000 );
+}
+
+evenWachten('Pizza!');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Scope closure probleem</h2>
+            <textarea class="script">
+function evenWachten(bericht) {
+    for(var idx = 0; idx < 3; idx++) {
+        setTimeout(function nogEvenWachten() {
+            console.log( idx, bericht );
+        }, 1000 );
+    }
+}
+
+evenWachten('Pizza!');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>var</h2>
+            <textarea class="script">
+var getal1 = 1;
+var getal2 = 2;
+if (true) {
+    var getal1 = 3;
+    getal2     = 4;
+    var getal3 = 5;
+}
+
+console.log(getal1);
+console.log(getal2);
+console.log(getal3);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>let</h2>
+            <textarea class="script">
+let getal1 = 1;
+let getal2 = 2;
+if (true) {
+    let getal1 = 3;
+    getal2     = 4;
+    let getal3 = 5;
+}
+
+console.log(getal1);
+console.log(getal2);
+console.log(getal3);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>const</h2>
+            <textarea class="script">
+const getal1 = 1;
+const getal2 = 2;
+if (true) {
+    const getal1 = 3;
+    getal2     = 4;
+    const getal3 = 5;
+}
+
+console.log(getal1);
+console.log(getal2);
+console.log(getal3);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>var vs. let</h2>
+            <textarea class="script">
+for(var getal1 = 0; getal1 < 2; getal1++) {
+    console.log('getal1 heeft nu waarde', getal1);
+}
+console.log('getal1 heeft nu waarde', getal1);
+
+/*
+console.log('');
+
+for(let getal2 = 0; getal2 < 2; getal2++) {
+    console.log('getal2 heeft nu waarde', getal2);
+}
+console.log('getal2 heeft nu waarde', getal2);
+*/
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Oplossing scope closure probleem</h2>
+            <textarea class="script">
+function evenWachten(bericht) {
+    for(let idx = 0; idx < 3; idx++) {
+        setTimeout(function nogEvenWachten() {
+            console.log( idx, bericht );
+        }, 1000 );
+    }
+}
+
+evenWachten('Pizza!');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Dynamische scope</h2>
+            <textarea class="script">
+var eenVariabel = 2;
+
+function eenFunctie() {
+    var eenVariabel = 3;
+    console.log(eenVariabel);
+}
+
+eenFunctie();
+console.log(eenVariabel);
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

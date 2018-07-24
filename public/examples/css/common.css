@@ -1,0 +1,146 @@
+*, ::before, ::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+.page {
+    display: flex;
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+}
+
+.content {
+    flex-basis: 0;
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.panel {
+    flex-basis: 0;
+    flex-grow: 1;
+    width: 100%;
+    padding: 15px;
+}
+
+.panel.stretch {
+    display: flex;
+    align-items: stretch;
+}
+
+.panel-output.stretch {
+    flex-direction: column;
+}
+
+.scripts {
+    display: none;
+}
+
+.script-panel {
+    width: 100%;
+}
+
+.panel.stretch .script-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.panel.stretch .cm-s-default {
+    height: 100%;
+}
+
+.highlight {
+    background-color: #fec;
+}
+
+.highlight.wide {
+    display: inline-block;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer button {
+    padding: 15px;
+}
+
+.footer button.hidden {
+    display: inline;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.cm-s-default {
+    border: 1px solid #ccc;
+    font-size: 18px;
+    font-family: 'Fira Mono', Consolas, monospace;
+	max-width: 50vw;
+}
+
+pre, code {
+    font-family: 'Fira Mono', Consolas, monospace;
+}
+
+textarea {
+    width: 100%;
+    font-family: 'Fira Mono', Consolas, monospace;
+}
+
+.panel-html {
+    flex: 1;
+}
+
+.panel-console {
+    font-size: 18px;
+    font-family: 'Fira Mono', Consolas, monospace;
+    overflow: auto;
+}
+
+.color-muted {
+    color: #999;
+}
+
+.color-string {
+    color: #f6c;
+}
+
+.color-numval {
+    color: #3c6;
+}
+
+.color-object {
+    color: #36c;
+}
+
+.color-regexp {
+    color: #c63;
+}
+
+.error {
+    background-color: #fdd;
+}

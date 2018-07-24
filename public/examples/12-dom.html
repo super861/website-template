@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12 DOM</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="./css/github-gist.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>DOM</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output stretch" id="output">
+                    <div class="panel-html clear"></div>
+                    <div>
+                        <hr/>
+                    </div>
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="refresh">Ververs</button>
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Hallo Wereld voorbeeld</h2>
+            <pre><code class="dom html">
+<h3>Koptekst</h3>
+</code></pre>
+            <hr/>
+            <textarea class="script">
+var mijnHeading = document.querySelector('h3');
+mijnHeading.textContent = 'Hallo Wereld!';
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Elementen selecteren</h2>
+            <pre><code class="dom html">
+<div id="block">Blok met id block</div>
+<div class="block">Blok met class block</div>
+</code></pre>
+<div class="extra-script hidden">
+refreshSlide();
+</div>
+<hr/>
+            <textarea class="script">
+const block = document.getElementById('block');
+// const block = document.querySelector('.block');
+</textarea>
+<div class="extra-script hidden">
+block.className = 'highlight';
+</div>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Meerdere elementen selecteren</h2>
+            <pre><code class="dom html">
+<div id="block">
+    <p>Paragraaf 1</p>
+    <p>Paragraaf 2</p>
+    <p>Paragraaf 3</p>
+</div>
+</code></pre>
+            <textarea class="script">
+const block = document.getElementById('block');
+const paragrafen = block.querySelectorAll('p');
+
+for(let index = 0; index < paragrafen.length; index++) {
+    paragrafen[index].style.fontSize = '2em';
+}
+
+Array.from(paragrafen).forEach((paragraaf) => {
+    paragraaf.style.color = 'red';
+});
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>HTML toevoegen</h2>
+            <pre><code class="dom html">
+<div id="block">
+</div>
+</code></pre>
+            <textarea class="script">
+const p = document.createElement('p');
+p.textContent = 'Extra paragraaf';
+document.getElementById('block').appendChild(p);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>appendChild</h2>
+            <pre><code class="dom html">
+<div>
+<h3>Blok 1</h3>
+<p id="paragraph">Een paragraaf</p>
+</div>
+<div id="block">
+<h3>Blok 2</h3>
+</div>
+</code></pre>
+            <textarea class="script">
+const p = document.getElementById('paragraph');
+const block = document.getElementById('block');
+block.appendChild(p);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>HTML weghalen</h2>
+            <pre><code class="dom html">
+<div id="block">
+<p>Een paragraaf</p>
+<p>Een paragraaf</p>
+<p>Een paragraaf</p>
+<p>Een paragraaf</p>
+</div>
+</code></pre>
+            <textarea class="script">
+var laatsteParagraaf = document.querySelector('p:last-child');
+laatsteParagraaf.remove();
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Kinderen en ouder</h2>
+            <pre><code class="dom html">
+<div id="block">
+    <p>Een paragraaf</p>
+    <p>Een paragraaf</p>
+    <p>Een paragraaf</p>
+    <p>Een paragraaf</p>
+</div>
+<div>
+    <h3>Een kopje</h3>
+    <p id="paragraph">Een paragraaf</p>
+</div>
+</code></pre>
+            <textarea class="script">
+const block = document.getElementById('block');
+const p = document.getElementById('paragraph');
+
+for(let index = 0; index < block.childNodes.length; index++) {
+    const paragraaf = block.childNodes[index];
+    if(paragraaf.nodeName.toLowerCase() === '#text') {
+        paragraaf.remove();
+        continue;
+    }
+    paragraaf.style.textDecoration = 'underline';
+};
+
+block.firstChild.style.color = 'red';
+block.lastChild.style.color = 'blue';
+
+p.parentNode.style.backgroundColor = 'green';
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Classes toevoegen en verwijderen</h2>
+            <pre><code class="dom html">
+<div id="block1">Blok 1</div>
+<div id="block2">Blok 2</div>
+<div id="block3" class="highlight">Blok 3</div>
+<div id="block4">Blok 4</div>
+</code></pre>
+            <textarea class="script">
+const block1 = document.getElementById('block1');
+const block2 = document.getElementById('block2');
+const block3 = document.getElementById('block3');
+const block4 = document.getElementById('block4');
+
+block1.className = 'highlight';
+
+block2.classList.add('highlight');
+
+block3.classList.remove('highlight');
+
+block4.classList.toggle('highlight');
+
+console.log('Blok 4 heeft', block4.classList.contains('highlight') ? 'wel' : 'niet', 'de class highlight');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Attributen</h2>
+            <pre><code class="dom html">
+<div id="block1" title="Blok">Blok 1</div>
+<div id="block2">Blok 2</div>
+<div id="block3" class="highlight">Blok 3</div>
+<div id="block4">Blok 4</div>
+</code></pre>
+            <textarea class="script">
+const block1 = document.getElementById('block1');
+const block2 = document.getElementById('block2');
+const block3 = document.getElementById('block3');
+const block4 = document.getElementById('block4');
+
+console.log(block1.title);
+
+block2.title = "Blok 2";
+
+console.log(block3.getAttribute('class'));
+
+console.log(block4.hasAttribute('title'));
+
+block4.setAttribute('title', 'Blok 4');
+
+console.log(block4.hasAttribute('title'));
+
+block4.removeAttribute('title');
+
+console.log(block4.hasAttribute('title'));
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

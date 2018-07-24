@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15 Classes</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="./css/github-gist.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Classes</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output stretch" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="refresh">Ververs</button>
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Class definiëren</h2>
+            <textarea class="script">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+    
+    krijgVolledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+console.log(gary.krijgVolledigeNaam());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Eigen methods aanroepen</h2>
+            <textarea class="script">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+    
+    krijgVolledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+    
+    volledigeNaamLengte() {
+        return this.krijgVolledigeNaam().length;
+    }
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+console.log(gary.volledigeNaamLengte());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Overerving</h2>
+            <div class="extra-script hidden">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+    
+    krijgVolledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+}
+var gary = new Persoon('Gary', 'Kertopermono');
+</div>
+            <textarea class="script">
+class Waifu extends Persoon {
+    zetWiensWaifu(persoon) {
+        this.persoon = persoon;
+    }
+}
+
+var garysWaifu = new Waifu("Samus", "Aran");
+garysWaifu.zetWiensWaifu(gary);
+console.log(garysWaifu.krijgVolledigeNaam());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Overschrijven methods</h2>
+            <div class="extra-script hidden">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+    
+    krijgVolledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+}
+
+class Waifu extends Persoon {
+    zetWiensWaifu(persoon) {
+        this.persoon = persoon;
+    }
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+</div>
+            <textarea class="script">
+class JapaneseWaifu extends Waifu {
+    krijgVolledigeNaam() {
+        return this.achternaam + ' ' + this.voornaam;
+    }
+}
+
+var bestWaifu = new JapaneseWaifu("Ai", "Kizuna");
+console.log(bestWaifu.krijgVolledigeNaam());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>super</h2>
+            <div class="extra-script hidden">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+    }
+    
+    krijgVolledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+}
+var gary = new Persoon('Gary', 'Kertopermono');
+</div>
+            <textarea class="script">
+class BNer extends Persoon {
+    constructor(voornaam, achternaam, beroep) {
+        super(voornaam, achternaam);
+        this.beroep = beroep;
+    }
+
+    krijgVolledigeNaam() {
+        return super.krijgVolledigeNaam() + ' (' + this.beroep + ')';
+    }
+}
+
+var bner = new BNer("Gigi", "Ravelli", "Actrice");
+console.log(bner.krijgVolledigeNaam());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Getters en setters</h2>
+            <textarea class="script">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this._voornaam = voornaam;
+        this._achternaam = achternaam;
+    }
+    
+    set voornaam(voornaam) {
+        this._voornaam = voornaam;
+    }
+    
+    set achternaam(achternaam) {
+        this._achternaam = achternaam;
+    }
+    
+    get volledigeNaam() {
+        return this._voornaam + ' ' + this._achternaam;
+    }
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+console.log(gary.volledigeNaam);
+gary.voornaam = 'Gandalf';
+gary.achternaam = 'the Gray';
+console.log(gary.volledigeNaam);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>static</h2>
+            <textarea class="script">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        if(!Persoon.personen) {
+            Persoon.personen = [];
+        }
+        Persoon.personen.push(this);
+    }
+    
+    get volledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+    
+    static allePersonen() {
+        const personen = Persoon.personen.map((persoon) => {
+            return persoon.volledigeNaam;
+        });
+        return personen.join(', ');
+    }
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+var thomas = new Persoon('Thomas', 'Jüsche');
+console.log(Persoon.allePersonen());
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>static met overerving</h2>
+            <div class="extra-script hidden">
+class Persoon {
+    constructor(voornaam, achternaam) {
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        if(!Persoon.personen) {
+            Persoon.personen = [];
+        }
+        Persoon.personen.push(this);
+    }
+    
+    get volledigeNaam() {
+        return this.voornaam + ' ' + this.achternaam;
+    }
+    
+    static allePersonen() {
+        const personen = Persoon.personen.map(function (persoon) {
+            return persoon.volledigeNaam;
+        });
+        return personen.join(', ');
+    }
+}
+
+class Waifu extends Persoon {
+    zetWiensWaifu(persoon) {
+        this.persoon = persoon;
+    }
+}
+
+class JapaneseWaifu extends Waifu {
+    get volledigeNaam() {
+        return this.achternaam + ' ' + this.voornaam;
+    }
+}
+
+class BNer extends Persoon {
+    constructor(voornaam, achternaam, beroep) {
+        super(voornaam, achternaam);
+        this.beroep = beroep;
+    }
+
+    get volledigeNaam() {
+        return super.volledigeNaam + ' (' + this.beroep + ')';
+    }
+}
+
+</div>
+            <textarea class="script">
+
+var gary = new Persoon('Gary', 'Kertopermono');
+var thomas = new Persoon('Thomas', 'Jüsche');
+var bestWaifu = new JapaneseWaifu("Ai", "Kizuna");
+var bner = new BNer("Gigi", "Ravelli", "Actrice");
+console.log(Persoon.allePersonen());
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

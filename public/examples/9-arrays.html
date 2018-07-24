@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9 Arrays</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Arrays</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Array</h2>
+            <textarea class="script">
+var boodschappen = ['boter', 'kaas', 'brood'];
+var getallen = [1, 2, 3, 4];
+var mix = [30, 'rock', true, null];
+
+console.log(boodschappen);
+console.log(getallen);
+console.log(mix);
+
+console.log('Eerste item in boodschappen:', boodschappen[0]);
+console.log('Derde getal:', getallen[2]);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Multi-dimensionele arrays</h2>
+            <textarea class="script">
+var matrix = [
+    [1, 0, 1],
+    [0, 1, 0],
+    [1, 0, 1]
+];
+
+console.log('Waarde op positie 0,0:', matrix[0][0]);
+console.log('Waarde op positie 2,1:', matrix[2][1]);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Push en pop</h2>
+            <textarea class="script">
+var boodschappen = ['boter', 'kaas', 'brood'];
+
+console.log('Huidige boodschappenlijst:', boodschappen);
+
+boodschappen.push('aardbei');
+
+console.log('Na push:', boodschappen);
+
+console.log('Verwijderde item bij pop:', boodschappen.pop());
+
+console.log('Na pop:', boodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Shift en unshift</h2>
+            <textarea class="script">
+var boodschappen = ['boter', 'kaas', 'brood'];
+
+console.log('Huidige boodschappenlijst:', boodschappen);
+
+boodschappen.unshift('aardbei');
+
+console.log('Na unshift:', boodschappen);
+
+console.log('Verwijderde item bij shift:', boodschappen.shift());
+
+console.log('Na shift:', boodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Zoeken van items</h2>
+            <textarea class="script">
+var boodschappen = ['boter', 'kaas', 'brood', 'aardbei', 'kaas', 'eieren', 'wasverzachter'];
+
+console.log('Eerste instantie van kaas:', boodschappen.indexOf('kaas'));
+console.log('Laatste instantie van kaas:', boodschappen.lastIndexOf('kaas'));
+console.log('Heeft de boodschappenlijst bananen?', boodschappen.includes('bananen'));
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Items toevoegen of verwijderen met splice</h2>
+            <textarea class="script">
+var boodschappen = ['brood', 'kaas', 'boter'];
+
+console.log('Boodschappenlijst:', boodschappen);
+console.log('Items verwijderd:', boodschappen.splice(1, 1));
+console.log('Boodschappenlijst:', boodschappen);
+console.log('Items verwijderd:', boodschappen.splice(1, 0, 'hagelslag', 'pindakaas'));
+console.log('Boodschappenlijst:', boodschappen);
+console.log('Items verwijderd:', boodschappen.splice(-2, 1, 'eieren'));
+console.log('Boodschappenlijst:', boodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Items toevoegen of verwijderen met splice</h2>
+            <textarea class="script">
+var boodschappen = ['brood', 'kaas', 'boter'];
+var boodschappen2 = boodschappen.slice();
+
+console.log('boodschappen:', boodschappen);
+console.log('boodschappen2:', boodschappen2);
+
+boodschappen2.pop();
+
+console.log('boodschappen:', boodschappen);
+console.log('boodschappen2:', boodschappen2);
+
+var boodschappen3 = boodschappen.slice(1);
+
+console.log('boodschappen3:', boodschappen3);
+
+var boodschappen4 = [...boodschappen];
+
+console.log('boodschappen4:', boodschappen4);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Samenvoegen van arrays</h2>
+            <textarea class="script">
+var boodschappen1 = ['brood', 'kaas', 'boter'];
+var boodschappen2 = ['hagelslag', 'eieren'];
+var boodschappen = boodschappen1.concat(boodschappen2);
+
+console.log('boodschappen:', boodschappen);
+
+boodschappen = [...boodschappen1, ...boodschappen2];
+
+console.log('boodschappen:', boodschappen);
+
+boodschappen = [...boodschappen1, 'bananen'];
+
+console.log('boodschappen:', boodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>forEach</h2>
+            <textarea class="script">
+var boodschappen = ['brood', 'kaas', 'boter'];
+boodschappen.forEach((item) => {
+    console.log(item);
+});
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>map</h2>
+            <textarea class="script">
+var boodschappen = ['brood', 'kaas', 'boter'];
+var spannendeBoodschappen = boodschappen.map((item) => {
+    return item + '!!';
+});
+console.log(spannendeBoodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>filter</h2>
+            <textarea class="script">
+var boodschappen = ['brood', 'kaas', 'boter'];
+var gefilterdeBoodschappen = boodschappen.filter((item) => {
+    return item.length !== 4;
+});
+console.log(gefilterdeBoodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>sort</h2>
+            <textarea class="script">
+var boodschappen = ['brood', 'kaas', 'boter', 'aardbeien'];
+var gesorteerdeBoodschappen = boodschappen.sort((a, b) => {
+    return (b.length - a.length) || (a > b ? 1 : b > a ? -1 : 0);
+});
+console.log(gesorteerdeBoodschappen);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>reduce</h2>
+            <textarea class="script">
+var getallen = [1, 2, 3, 4];
+var som = getallen.reduce((subtotaal, waarde) => {
+    return subtotaal + waarde;
+}, 0);
+console.log(som);
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

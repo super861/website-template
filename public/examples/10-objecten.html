@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10 Objecten</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Objecten</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Object</h2>
+            <textarea class="script">
+// functies die gebruikt worden door de auto
+var gasgeven = function() {
+    console.log('Vroom vroom');
+}
+
+//auto Object aanmaken
+var auto = {
+    aantalWielen: 4,
+    kleur: 'blauw',
+    versnellingen: 5,
+    merk: 'Volvo',
+    maximumSnelheid: 180,
+    eigenaars: ['Thomas', 'Gary'],
+    sturen: function() {
+        console.log('Waarheen?! Waarheen?!');
+    },
+    gasgeven: gasgeven
+}
+
+console.log(auto);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Eigenschappen opvragen</h2>
+            <textarea class="script">
+// functies die gebruikt worden door de auto
+var gasgeven = function() {
+    console.log('Vroom vroom');
+}
+
+//auto Object aanmaken
+var auto = {
+    aantalWielen: 4,
+    kleur: 'blauw',
+    versnellingen: 5,
+    merk: 'Volvo',
+    maximumSnelheid: 180,
+    eigenaars: ['Thomas', 'Gary'],
+    sturen: function() {
+        console.log('Waarheen?! Waarheen?!');
+    },
+    gasgeven: gasgeven
+}
+
+console.log(auto.kleur);
+console.log(auto['aantalWielen']);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Functies aanroepen</h2>
+            <textarea class="script">
+// functies die gebruikt worden door de auto
+var gasgeven = function() {
+    console.log('Vroom vroom');
+}
+
+//auto Object aanmaken
+var auto = {
+    aantalWielen: 4,
+    kleur: 'blauw',
+    versnellingen: 5,
+    merk: 'Volvo',
+    maximumSnelheid: 180,
+    eigenaars: ['Thomas', 'Gary'],
+    sturen: function() {
+        console.log('Waarheen?! Waarheen?!');
+    },
+    gasgeven: gasgeven
+}
+
+auto.sturen();
+auto['gasgeven']();
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Eigenschappen aanpassen</h2>
+            <textarea class="script">
+// functies die gebruikt worden door de auto
+var gasgeven = function() {
+    console.log('Vroom vroom');
+}
+
+//auto Object aanmaken
+var auto = {
+    aantalWielen: 4,
+    kleur: 'blauw',
+    versnellingen: 5,
+    merk: 'Volvo',
+    maximumSnelheid: 180,
+    eigenaars: ['Thomas', 'Gary'],
+    sturen: function() {
+        console.log('Waarheen?! Waarheen?!');
+    },
+    gasgeven: gasgeven
+}
+
+console.log(auto.kleur);
+auto.kleur = 'rood';
+console.log(auto.kleur);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Objecten aanmaken</h2>
+            <textarea class="script">
+// Object aanmaken, contructed form
+//NOTE: wordt bijna nooit gebruikt
+var myObj = new Object();
+myObj.key = 4;
+
+console.log(myObj);
+
+// Object aanmaken, literal syntax
+var myObj2 = {
+    key: 4
+    // ...
+};
+
+console.log(myObj2);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Objecten kopiëren</h2>
+            <textarea class="script">
+var original = { a: 1, b: 2 };
+var copy = { ...original }; // copy => { a: 1, b: 2}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Objecten samenvoegen</h2>
+            <textarea class="script">
+var original1 = { a: 1, b: 2 };
+var original2 = { c: 3, b: 4 };
+var merge = { ...original1, ...original2 }; // merge => { a: 1, b: 4, c: 3}
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>this</h2>
+            <textarea class="script">
+var auto = {
+    aantalWielen: 4,
+    hoeveelWielen: function() {
+        console.log('De auto heeft', this.aantalWielen, 'wielen.');
+    }
+}
+
+auto.hoeveelWielen();
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

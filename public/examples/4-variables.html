@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4 Variabelen</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Variabelen</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <!--<div class="panel panel-output" id="output"></div>-->
+            </div>
+            <div class="footer">
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Aanmaken van variabelen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var mijnNaam = 'Gary';
+var mijnLeeftijd = 32;
+var isWeekend = false;
+
+// Arrays
+var boodchappen = ['brood', 'kaas', 'boter'];
+
+// Objects
+var adres = {
+    straat: 'Magneetstraat',
+    huisnummer: 7,
+    stad: 'Amsterdam'
+};
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Strings aan elkaar plakken</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var mijnNaam = 'Gary';
+
+// mijnNaam aanpassen
+mijnNaam = mijnNaam + ' Kertopermono';
+console.log(mijnNaam);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Rekenen met getallen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 12;
+var tweedeGetal = 5;
+
+console.log('eersteGetal + tweedeGetal: ', eersteGetal + tweedeGetal);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Rekenen met getallen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 12;
+var tweedeGetal = 5;
+
+eersteGetal = tweedeGetal + 3;
+console.log('eersteGetal: ', eersteGetal);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Toewijs operatoren</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var getal = 12;
+
+getal+= 3;
+console.log('eersteGetal: ', eersteGetal);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Vergelijkingen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 1;
+var tweedeGetal = 2;
+
+console.log('getallen gelijk (eersteGetal === tweedeGetal): ',  eersteGetal === tweedeGetal);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Vergelijkingen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 1;
+var tweedeGetal = 2;
+
+console.log('Eerste getal groter dan tweede (eersteGetal > tweedeGetal): ', eersteGetal > tweedeGetal);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Vergelijkingen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 1;
+var tweedeGetal = 2;
+
+console.log('losse vergelijking eersteGetal en "12" (eersteGetal == "12"): ', eersteGetal == "12");
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Vergelijkingen</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 1;
+var tweedeGetal = 2;
+
+console.log('strikte vergelijking eersteGetal en "12" (eersteGetal === "12"): ', eersteGetal === "12");
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Incrementerende / decrementerende operatoren</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 1;
+var tweedeGetal = 1;
+
+console.log('eersteGetal: ', eersteGetal++);
+console.log('tweedeGetal: ', ++tweedeGetal);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Bitwise operatoren</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 5;
+var tweedeGetal = 12;
+
+console.log('eersteGetal: ', eersteGetal.toString(2).padStart(4, '0') + ' (' + eersteGetal + ')');
+console.log('tweedeGetal: ', tweedeGetal.toString(2).padStart(4, '0') + ' (' + tweedeGetal + ')');
+
+var getalAnd = eersteGetal & tweedeGetal;
+console.log('Bitwise AND: ', getalAnd.toString(2).padStart(4, '0') + ' (' + getalAnd + ')');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Bitwise operatoren</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 5;
+var tweedeGetal = 12;
+
+console.log('eersteGetal: ', eersteGetal.toString(2).padStart(4, '0') + ' (' + eersteGetal + ')');
+console.log('tweedeGetal: ', tweedeGetal.toString(2).padStart(4, '0') + ' (' + tweedeGetal + ')');
+
+var getalOr = eersteGetal | tweedeGetal;
+console.log('Bitwise OR:  ', getalOr.toString(2).padStart(4, '0') + ' (' + getalOr + ')');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Bitwise operatoren</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 5;
+var tweedeGetal = 12;
+
+console.log('eersteGetal: ', eersteGetal.toString(2).padStart(4, '0') + ' (' + eersteGetal + ')');
+console.log('tweedeGetal: ', tweedeGetal.toString(2).padStart(4, '0') + ' (' + tweedeGetal + ')');
+
+var getalXor = eersteGetal ^ tweedeGetal;
+console.log('Bitwise XOR: ', getalXor.toString(2).padStart(4, '0') + ' (' + getalXor + ')');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Bitwise operatoren</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var eersteGetal = 5;
+var tweedeGetal = ~ eersteGetal & 0x0f;
+
+console.log('eersteGetal: ', eersteGetal.toString(2).padStart(4, '0') + ' (' + eersteGetal + ')');
+console.log('tweedeGetal: ', tweedeGetal.toString(2).padStart(4, '0') + ' (' + tweedeGetal + ')');
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Ternary operators</h2>
+            <textarea class="script">
+// Variabelen aanmaken
+var mijnNaam = prompt('Wie zijt gij?');
+var isWizard = (mijnNaam === 'Gary' ? 'Wizard' : 'Niet Wizard');
+
+alert('Het oordeel: ' + isWizard);
+</textarea>
+        </div>
+    </div>
+</body>
+</html>

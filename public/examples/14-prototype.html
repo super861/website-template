@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14 Prototype</title>
+    <script src="./js/common.js"></script>
+    <link rel="stylesheet" href="./css/codemirror/codemirror.css"/>
+    <script src="./js/codemirror/codemirror.js"></script>
+    <script src="./js/codemirror/javascript.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="./css/github-gist.css"/>
+    <link rel="stylesheet" href="./css/common.css"/>
+    <link rel="stylesheet" href="./css/firamono.css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="main">
+            <div class="header"><h1>Prototype</h1></div>
+            <div class="content">
+                <div class="panel stretch" id="content"></div>
+                <div class="panel panel-output stretch" id="output">
+                    <div class="panel-console-container">
+                        <h2>Console output</h2>
+                        <pre class="panel-console clear"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button id="refresh">Ververs</button>
+                <button id="execute">Uitvoeren</button>
+                <button id="prev">Vorige</button>
+                <button id="next">Volgende</button>
+            </div>
+        </div>
+    </div>
+    <div class="scripts" id="scripts">
+        <div class="script-panel stretch">
+            <h2>Reference type definiëren</h2>
+            <textarea class="script">
+function Persoon(voornaam, achternaam) {
+    this.voornaam = voornaam;
+    this.achternaam = achternaam;
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+console.log(gary.voornaam, gary.achternaam);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Prototypes</h2>
+            <textarea class="script">
+function Persoon(voornaam, achternaam) {
+    this.voornaam = voornaam;
+    this.achternaam = achternaam;
+}
+
+Persoon.prototype.krijgVolledigeNaam = function() {
+    return this.voornaam + ' ' + this.achternaam;
+}
+
+var gary = new Persoon('Gary', 'Kertopermono');
+console.log(gary.voornaam, gary.achternaam);
+</textarea>
+        </div>
+        <div class="script-panel stretch">
+            <h2>Prototype van Array aanpassen</h2>
+            <textarea class="script">
+Array.prototype.spliceArray = function(start, length, arrayData) {
+    Array.prototype.splice.apply(this, [start, length, ...arrayData]);
+}
+
+var getallen = [0, 1, 2, 3, 8, 6];
+getallen.spliceArray(4, 1, [4, 5]);
+
+console.log(getallen);
+</textarea>
+        </div>
+    </div>
+</body>
+</html>
